@@ -1,0 +1,22 @@
+* { margin: 0; padding: 0; }
+
+ul, ol { list-style: none; }
+
+a { color: inherit; text-decoration: none; cursor: pointer; }
+
+body {
+    font-size: 14px;
+    color: #717171;
+    background: #fff;
+}
+
+.color-link {
+    color: #6699FF;
+}
+
+.page-main {
+    margin: 0 auto;
+    width: 1000px;
+    min-height: 100px;
+    padding-bottom: 50px;
+}

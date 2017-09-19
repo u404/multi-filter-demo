@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>项目指南详情</title>
+    
+    <link href="multi-filter/multi-filter.css" rel="stylesheet" type="text/css" />
+    <link href="demo.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="page-main">
+        <div id="filter"></div>
+    </div>
+
+    <script src="jquery-1.11.2.min.js"></script>
+    <script src="multi-filter/multi-filter.js"></script>
+    <script>
+        //此处已经封装成一个独立的插件
+
+        var enterpriseList = [
+            {
+                "enterpriseId": 9,
+                "enterpriseName": "慧科集团",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1504059302000,
+                "updateUser": "huikedu",
+                "updateTime": 1504059302000,
+                "versionNo": 4
+            },
+            {
+                "enterpriseId": 86,
+                "enterpriseName": "腾讯公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503385310000,
+                "updateUser": "moe0072",
+                "updateTime": 1504061388000,
+                "versionNo": 17
+            },
+            {
+                "enterpriseId": 87,
+                "enterpriseName": "北京百度网讯科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892090000,
+                "updateUser": "moe0081",
+                "updateTime": 1503913109000,
+                "versionNo": 12
+            },
+            {
+                "enterpriseId": 88,
+                "enterpriseName": "Google",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892091000,
+                "updateUser": "moe0114",
+                "updateTime": 1503909218000,
+                "versionNo": 62
+            },
+            {
+                "enterpriseId": 89,
+                "enterpriseName": "IBM",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892092000,
+                "updateUser": "moe0162",
+                "updateTime": 1503903155000,
+                "versionNo": 81
+            },
+            {
+                "enterpriseId": 90,
+                "enterpriseName": "英特尔公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892092000,
+                "updateUser": "moe0168",
+                "updateTime": 1504061887000,
+                "versionNo": 91
+            },
+            {
+                "enterpriseId": 91,
+                "enterpriseName": "公司101",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892093000,
+                "updateUser": "admin",
+                "updateTime": 1503892093000,
+                "versionNo": 110
+            },
+            {
+                "enterpriseId": 92,
+                "enterpriseName": "National Instruments",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892095000,
+                "updateUser": "moe0275",
+                "updateTime": 1503972752000,
+                "versionNo": 211
+            },
+            {
+                "enterpriseId": 93,
+                "enterpriseName": "公206",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892096000,
+                "updateUser": "admin",
+                "updateTime": 1503892096000,
+                "versionNo": 215
+            },
+            {
+                "enterpriseId": 94,
+                "enterpriseName": "公司211",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892096000,
+                "updateUser": "admin",
+                "updateTime": 1503892096000,
+                "versionNo": 220
+            },
+            {
+                "enterpriseId": 95,
+                "enterpriseName": "甲骨文（中国）软件系统有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892097000,
+                "updateUser": "moe0369",
+                "updateTime": 1503979076000,
+                "versionNo": 246
+            },
+            {
+                "enterpriseId": 96,
+                "enterpriseName": "公司1",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892129000,
+                "updateUser": "admin",
+                "updateTime": 1503892129000,
+                "versionNo": 10
+            },
+            {
+                "enterpriseId": 97,
+                "enterpriseName": "上海电气集团股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0530",
+                "updateTime": 1503893689000,
+                "versionNo": 11
+            },
+            {
+                "enterpriseId": 98,
+                "enterpriseName": "公司2",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 11
+            },
+            {
+                "enterpriseId": 99,
+                "enterpriseName": "金蝶软件（中国）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0536",
+                "updateTime": 1503899701000,
+                "versionNo": 14
+            },
+            {
+                "enterpriseId": 100,
+                "enterpriseName": "北京超星尔雅教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0573",
+                "updateTime": 1503995278000,
+                "versionNo": 17
+            },
+            {
+                "enterpriseId": 101,
+                "enterpriseName": "公司5",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 14
+            },
+            {
+                "enterpriseId": 102,
+                "enterpriseName": "北京西普阳光教育科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0615",
+                "updateTime": 1503986437000,
+                "versionNo": 16
+            },
+            {
+                "enterpriseId": 103,
+                "enterpriseName": "玩课网",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0708",
+                "updateTime": 1503975600000,
+                "versionNo": 20
+            },
+            {
+                "enterpriseId": 104,
+                "enterpriseName": "公司8",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 17
+            },
+            {
+                "enterpriseId": 105,
+                "enterpriseName": "公司9",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 18
+            },
+            {
+                "enterpriseId": 106,
+                "enterpriseName": "北京正保会计教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0771",
+                "updateTime": 1503905782000,
+                "versionNo": 23
+            },
+            {
+                "enterpriseId": 107,
+                "enterpriseName": "公司11",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 20
+            },
+            {
+                "enterpriseId": 108,
+                "enterpriseName": "希毕迪（北京）教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0834",
+                "updateTime": 1503907101000,
+                "versionNo": 24
+            },
+            {
+                "enterpriseId": 109,
+                "enterpriseName": "北京凌阳爱普科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "moe0839",
+                "updateTime": 1503999370000,
+                "versionNo": 31
+            },
+            {
+                "enterpriseId": 110,
+                "enterpriseName": "公司14",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892775000,
+                "updateUser": "admin",
+                "updateTime": 1503892775000,
+                "versionNo": 23
+            },
+            {
+                "enterpriseId": 111,
+                "enterpriseName": "北京文华在线教育科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe0891",
+                "updateTime": 1504019955000,
+                "versionNo": 31
+            },
+            {
+                "enterpriseId": 112,
+                "enterpriseName": "北京触控未来科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe0906",
+                "updateTime": 1503898300000,
+                "versionNo": 26
+            },
+            {
+                "enterpriseId": 113,
+                "enterpriseName": "烟台新天地试验技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe0940",
+                "updateTime": 1503900755000,
+                "versionNo": 27
+            },
+            {
+                "enterpriseId": 114,
+                "enterpriseName": "北京普开数据技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe0951",
+                "updateTime": 1503915895000,
+                "versionNo": 29
+            },
+            {
+                "enterpriseId": 115,
+                "enterpriseName": "福建中锐网络股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe0958",
+                "updateTime": 1503971609000,
+                "versionNo": 29
+            },
+            {
+                "enterpriseId": 116,
+                "enterpriseName": "杭州万霆科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1036",
+                "updateTime": 1503971040000,
+                "versionNo": 30
+            },
+            {
+                "enterpriseId": 117,
+                "enterpriseName": "公司21",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 30
+            },
+            {
+                "enterpriseId": 118,
+                "enterpriseName": "浙江亚龙教育装备股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1187",
+                "updateTime": 1503969821000,
+                "versionNo": 33
+            },
+            {
+                "enterpriseId": 119,
+                "enterpriseName": "公司23",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 32
+            },
+            {
+                "enterpriseId": 120,
+                "enterpriseName": "北京神州泰岳教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1244",
+                "updateTime": 1503989966000,
+                "versionNo": 38
+            },
+            {
+                "enterpriseId": 121,
+                "enterpriseName": "杭州华恩教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1299",
+                "updateTime": 1503927923000,
+                "versionNo": 36
+            },
+            {
+                "enterpriseId": 122,
+                "enterpriseName": "公司26",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 35
+            },
+            {
+                "enterpriseId": 123,
+                "enterpriseName": "浙江天煌科技实业有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1314",
+                "updateTime": 1503976549000,
+                "versionNo": 39
+            },
+            {
+                "enterpriseId": 124,
+                "enterpriseName": "千锋教育集团",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1334",
+                "updateTime": 1503972359000,
+                "versionNo": 45
+            },
+            {
+                "enterpriseId": 125,
+                "enterpriseName": "公司29",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 38
+            },
+            {
+                "enterpriseId": 126,
+                "enterpriseName": "公司30",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 39
+            },
+            {
+                "enterpriseId": 127,
+                "enterpriseName": "开元电子商务（深圳）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1472",
+                "updateTime": 1503986969000,
+                "versionNo": 48
+            },
+            {
+                "enterpriseId": 128,
+                "enterpriseName": "开来科技（深圳）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1541",
+                "updateTime": 1503991942000,
+                "versionNo": 48
+            },
+            {
+                "enterpriseId": 129,
+                "enterpriseName": "深圳市中诺思科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1603",
+                "updateTime": 1503974411000,
+                "versionNo": 48
+            },
+            {
+                "enterpriseId": 130,
+                "enterpriseName": "睿亚训",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1620",
+                "updateTime": 1503898938000,
+                "versionNo": 48
+            },
+            {
+                "enterpriseId": 131,
+                "enterpriseName": "公司35",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 44
+            },
+            {
+                "enterpriseId": 132,
+                "enterpriseName": "蓝墨科技",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1707",
+                "updateTime": 1503911436000,
+                "versionNo": 46
+            },
+            {
+                "enterpriseId": 133,
+                "enterpriseName": "北京优幕科技有限责任公司（UMU)",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1818",
+                "updateTime": 1503908518000,
+                "versionNo": 47
+            },
+            {
+                "enterpriseId": 134,
+                "enterpriseName": "公司38",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 47
+            },
+            {
+                "enterpriseId": 135,
+                "enterpriseName": "郑州新思齐科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1904",
+                "updateTime": 1503968270000,
+                "versionNo": 51
+            },
+            {
+                "enterpriseId": 136,
+                "enterpriseName": "照澜院教育",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1938",
+                "updateTime": 1503942338000,
+                "versionNo": 50
+            },
+            {
+                "enterpriseId": 137,
+                "enterpriseName": "北京尚学堂科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe1959",
+                "updateTime": 1503987273000,
+                "versionNo": 54
+            },
+            {
+                "enterpriseId": 138,
+                "enterpriseName": "公司42",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 51
+            },
+            {
+                "enterpriseId": 139,
+                "enterpriseName": "杭州贝腾科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe2048",
+                "updateTime": 1503991141000,
+                "versionNo": 54
+            },
+            {
+                "enterpriseId": 140,
+                "enterpriseName": "公司44",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "admin",
+                "updateTime": 1503892776000,
+                "versionNo": 53
+            },
+            {
+                "enterpriseId": 141,
+                "enterpriseName": "浙江衡信教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892776000,
+                "updateUser": "moe2141",
+                "updateTime": 1503896716000,
+                "versionNo": 55
+            },
+            {
+                "enterpriseId": 142,
+                "enterpriseName": "公司46",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 55
+            },
+            {
+                "enterpriseId": 143,
+                "enterpriseName": "广东诚飞智能科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2215",
+                "updateTime": 1503985367000,
+                "versionNo": 60
+            },
+            {
+                "enterpriseId": 144,
+                "enterpriseName": "公司48",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 57
+            },
+            {
+                "enterpriseId": 145,
+                "enterpriseName": "南京慕测信息科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2255",
+                "updateTime": 1503983954000,
+                "versionNo": 60
+            },
+            {
+                "enterpriseId": 146,
+                "enterpriseName": "塔普翊海（上海）智能有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2283",
+                "updateTime": 1503988883000,
+                "versionNo": 60
+            },
+            {
+                "enterpriseId": 147,
+                "enterpriseName": "广东泽诚教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2332",
+                "updateTime": 1503988446000,
+                "versionNo": 62
+            },
+            {
+                "enterpriseId": 148,
+                "enterpriseName": "公司52",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 61
+            },
+            {
+                "enterpriseId": 149,
+                "enterpriseName": "公司53",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 62
+            },
+            {
+                "enterpriseId": 150,
+                "enterpriseName": "苏州国云数据科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2789",
+                "updateTime": 1503987861000,
+                "versionNo": 64
+            },
+            {
+                "enterpriseId": 151,
+                "enterpriseName": "清大云网科技有相公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2787",
+                "updateTime": 1503919706000,
+                "versionNo": 65
+            },
+            {
+                "enterpriseId": 152,
+                "enterpriseName": "国信蓝桥教育科技（北京）股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2781",
+                "updateTime": 1503913084000,
+                "versionNo": 67
+            },
+            {
+                "enterpriseId": 153,
+                "enterpriseName": "北京态金科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2721",
+                "updateTime": 1503902198000,
+                "versionNo": 68
+            },
+            {
+                "enterpriseId": 154,
+                "enterpriseName": "厦门市美亚柏科信息股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2699",
+                "updateTime": 1503977906000,
+                "versionNo": 68
+            },
+            {
+                "enterpriseId": 155,
+                "enterpriseName": "北京中科致远科技有限责任公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2622",
+                "updateTime": 1503903283000,
+                "versionNo": 71
+            },
+            {
+                "enterpriseId": 156,
+                "enterpriseName": "公司60",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 69
+            },
+            {
+                "enterpriseId": 157,
+                "enterpriseName": "博拉网络股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2597",
+                "updateTime": 1503923281000,
+                "versionNo": 71
+            },
+            {
+                "enterpriseId": 158,
+                "enterpriseName": "河南青云信息技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2582",
+                "updateTime": 1503997454000,
+                "versionNo": 73
+            },
+            {
+                "enterpriseId": 159,
+                "enterpriseName": "公司63",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 72
+            },
+            {
+                "enterpriseId": 160,
+                "enterpriseName": "公司64",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 73
+            },
+            {
+                "enterpriseId": 161,
+                "enterpriseName": "北京翡翠教育科技集团有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2453",
+                "updateTime": 1503907929000,
+                "versionNo": 75
+            },
+            {
+                "enterpriseId": 162,
+                "enterpriseName": "广州银行",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2448",
+                "updateTime": 1503973421000,
+                "versionNo": 78
+            },
+            {
+                "enterpriseId": 163,
+                "enterpriseName": "北京赛佰特科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2443",
+                "updateTime": 1504059391000,
+                "versionNo": 79
+            },
+            {
+                "enterpriseId": 164,
+                "enterpriseName": "青岛英谷教育科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2423",
+                "updateTime": 1503974099000,
+                "versionNo": 79
+            },
+            {
+                "enterpriseId": 165,
+                "enterpriseName": "公司69",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 78
+            },
+            {
+                "enterpriseId": 166,
+                "enterpriseName": "天津滨海迅腾科技集团有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2399",
+                "updateTime": 1503989964000,
+                "versionNo": 81
+            },
+            {
+                "enterpriseId": 167,
+                "enterpriseName": "公司71",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 80
+            },
+            {
+                "enterpriseId": 168,
+                "enterpriseName": "安博教育，新思科技",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2853",
+                "updateTime": 1503990975000,
+                "versionNo": 82
+            },
+            {
+                "enterpriseId": 169,
+                "enterpriseName": "华为技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "moe2874",
+                "updateTime": 1503990576000,
+                "versionNo": 83
+            },
+            {
+                "enterpriseId": 170,
+                "enterpriseName": "公司74",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 83
+            },
+            {
+                "enterpriseId": 171,
+                "enterpriseName": "公司75",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892777000,
+                "updateUser": "admin",
+                "updateTime": 1503892777000,
+                "versionNo": 84
+            },
+            {
+                "enterpriseId": 172,
+                "enterpriseName": "青岛伟东云教育集团有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe2897",
+                "updateTime": 1503911641000,
+                "versionNo": 87
+            },
+            {
+                "enterpriseId": 173,
+                "enterpriseName": "中关村万众创新创业教育产业促进中心",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe2908",
+                "updateTime": 1503908145000,
+                "versionNo": 87
+            },
+            {
+                "enterpriseId": 174,
+                "enterpriseName": "公司78",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 87
+            },
+            {
+                "enterpriseId": 175,
+                "enterpriseName": "公司79",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 88
+            },
+            {
+                "enterpriseId": 176,
+                "enterpriseName": "武汉厚溥教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3060",
+                "updateTime": 1503966984000,
+                "versionNo": 90
+            },
+            {
+                "enterpriseId": 177,
+                "enterpriseName": "公司81",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 90
+            },
+            {
+                "enterpriseId": 178,
+                "enterpriseName": "公司82",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 91
+            },
+            {
+                "enterpriseId": 179,
+                "enterpriseName": "厦门铂士莱信息科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3227",
+                "updateTime": 1503998932000,
+                "versionNo": 94
+            },
+            {
+                "enterpriseId": 180,
+                "enterpriseName": "公司84",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 93
+            },
+            {
+                "enterpriseId": 181,
+                "enterpriseName": "龙芯中科技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3287",
+                "updateTime": 1503986849000,
+                "versionNo": 95
+            },
+            {
+                "enterpriseId": 182,
+                "enterpriseName": "公司86",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 95
+            },
+            {
+                "enterpriseId": 183,
+                "enterpriseName": "辽宁中嘉博众教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3388",
+                "updateTime": 1503967575000,
+                "versionNo": 97
+            },
+            {
+                "enterpriseId": 184,
+                "enterpriseName": "公司88",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 97
+            },
+            {
+                "enterpriseId": 185,
+                "enterpriseName": "公司89",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 98
+            },
+            {
+                "enterpriseId": 186,
+                "enterpriseName": "公司90",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 99
+            },
+            {
+                "enterpriseId": 187,
+                "enterpriseName": "公司91",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 100
+            },
+            {
+                "enterpriseId": 188,
+                "enterpriseName": "公司92",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 101
+            },
+            {
+                "enterpriseId": 189,
+                "enterpriseName": "湖南合天智汇信息技术有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3504",
+                "updateTime": 1503985538000,
+                "versionNo": 103
+            },
+            {
+                "enterpriseId": 190,
+                "enterpriseName": "华清远见教育集团",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3533",
+                "updateTime": 1503979429000,
+                "versionNo": 107
+            },
+            {
+                "enterpriseId": 191,
+                "enterpriseName": "公司95",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 104
+            },
+            {
+                "enterpriseId": 192,
+                "enterpriseName": "公司96",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 105
+            },
+            {
+                "enterpriseId": 193,
+                "enterpriseName": "公司97",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 106
+            },
+            {
+                "enterpriseId": 194,
+                "enterpriseName": "公司98",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 107
+            },
+            {
+                "enterpriseId": 195,
+                "enterpriseName": "合肥科硕信息技术服务有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3749",
+                "updateTime": 1503989390000,
+                "versionNo": 110
+            },
+            {
+                "enterpriseId": 196,
+                "enterpriseName": "北京一维弦科技有限责任公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3751",
+                "updateTime": 1503973964000,
+                "versionNo": 110
+            },
+            {
+                "enterpriseId": 197,
+                "enterpriseName": "公司101",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 110
+            },
+            {
+                "enterpriseId": 198,
+                "enterpriseName": "沈阳华信教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3898",
+                "updateTime": 1503990968000,
+                "versionNo": 113
+            },
+            {
+                "enterpriseId": 199,
+                "enterpriseName": "北京普源精电科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3900",
+                "updateTime": 1503974610000,
+                "versionNo": 113
+            },
+            {
+                "enterpriseId": 200,
+                "enterpriseName": "软通动力信息技术（集团）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3932",
+                "updateTime": 1503994147000,
+                "versionNo": 115
+            },
+            {
+                "enterpriseId": 201,
+                "enterpriseName": "中青朗顿（太湖）教育文化科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3958",
+                "updateTime": 1503993289000,
+                "versionNo": 115
+            },
+            {
+                "enterpriseId": 202,
+                "enterpriseName": "北京菜鸟在线教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "moe3969",
+                "updateTime": 1503998601000,
+                "versionNo": 117
+            },
+            {
+                "enterpriseId": 203,
+                "enterpriseName": "公司107",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892778000,
+                "updateUser": "admin",
+                "updateTime": 1503892778000,
+                "versionNo": 116
+            },
+            {
+                "enterpriseId": 204,
+                "enterpriseName": "公司108",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 117
+            },
+            {
+                "enterpriseId": 205,
+                "enterpriseName": "公司109",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 118
+            },
+            {
+                "enterpriseId": 206,
+                "enterpriseName": "公司110",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 119
+            },
+            {
+                "enterpriseId": 207,
+                "enterpriseName": "青岛思途共享科技信息服务有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4207",
+                "updateTime": 1504062031000,
+                "versionNo": 125
+            },
+            {
+                "enterpriseId": 208,
+                "enterpriseName": "武汉慧联无限科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4263",
+                "updateTime": 1503999170000,
+                "versionNo": 122
+            },
+            {
+                "enterpriseId": 209,
+                "enterpriseName": "杭州百腾教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4284",
+                "updateTime": 1504004569000,
+                "versionNo": 123
+            },
+            {
+                "enterpriseId": 210,
+                "enterpriseName": "公司114",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 123
+            },
+            {
+                "enterpriseId": 211,
+                "enterpriseName": "公司115",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 124
+            },
+            {
+                "enterpriseId": 212,
+                "enterpriseName": "苏州高博应诺信息科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4367",
+                "updateTime": 1504015588000,
+                "versionNo": 126
+            },
+            {
+                "enterpriseId": 213,
+                "enterpriseName": "深圳信盈达科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4430",
+                "updateTime": 1504010862000,
+                "versionNo": 128
+            },
+            {
+                "enterpriseId": 214,
+                "enterpriseName": "南京建策科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4502",
+                "updateTime": 1504003335000,
+                "versionNo": 128
+            },
+            {
+                "enterpriseId": 215,
+                "enterpriseName": "公司119",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 128
+            },
+            {
+                "enterpriseId": 216,
+                "enterpriseName": "公司120",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 129
+            },
+            {
+                "enterpriseId": 217,
+                "enterpriseName": "成都杰科力科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4866",
+                "updateTime": 1504011933000,
+                "versionNo": 131
+            },
+            {
+                "enterpriseId": 218,
+                "enterpriseName": "北京红亚华宇科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4873",
+                "updateTime": 1504001427000,
+                "versionNo": 133
+            },
+            {
+                "enterpriseId": 219,
+                "enterpriseName": "中科天玑数据科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4915",
+                "updateTime": 1503993524000,
+                "versionNo": 133
+            },
+            {
+                "enterpriseId": 220,
+                "enterpriseName": "神州智造教育科技（北京）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe4923",
+                "updateTime": 1504011170000,
+                "versionNo": 136
+            },
+            {
+                "enterpriseId": 221,
+                "enterpriseName": "华唐智造科技（北京）有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5003",
+                "updateTime": 1504061982000,
+                "versionNo": 135
+            },
+            {
+                "enterpriseId": 222,
+                "enterpriseName": "公司126",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 135
+            },
+            {
+                "enterpriseId": 223,
+                "enterpriseName": "北京和欣运达科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5087",
+                "updateTime": 1504002797000,
+                "versionNo": 138
+            },
+            {
+                "enterpriseId": 224,
+                "enterpriseName": "北京津发科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5106",
+                "updateTime": 1504017048000,
+                "versionNo": 151
+            },
+            {
+                "enterpriseId": 225,
+                "enterpriseName": "公司129",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 138
+            },
+            {
+                "enterpriseId": 226,
+                "enterpriseName": "固高派动（东莞）智能科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5247",
+                "updateTime": 1504010668000,
+                "versionNo": 140
+            },
+            {
+                "enterpriseId": 227,
+                "enterpriseName": "公司131",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 140
+            },
+            {
+                "enterpriseId": 228,
+                "enterpriseName": "北京渥瑞达科技发展有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5293",
+                "updateTime": 1504003890000,
+                "versionNo": 146
+            },
+            {
+                "enterpriseId": 229,
+                "enterpriseName": "公司133",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "admin",
+                "updateTime": 1503892779000,
+                "versionNo": 142
+            },
+            {
+                "enterpriseId": 230,
+                "enterpriseName": "昆山杰普软件科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5415",
+                "updateTime": 1504005989000,
+                "versionNo": 144
+            },
+            {
+                "enterpriseId": 231,
+                "enterpriseName": "北京时代行云科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5425",
+                "updateTime": 1504001903000,
+                "versionNo": 145
+            },
+            {
+                "enterpriseId": 232,
+                "enterpriseName": "慧科教育科技集团有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5456",
+                "updateTime": 1503999906000,
+                "versionNo": 147
+            },
+            {
+                "enterpriseId": 233,
+                "enterpriseName": "北京华育兴业科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5488",
+                "updateTime": 1504058428000,
+                "versionNo": 147
+            },
+            {
+                "enterpriseId": 234,
+                "enterpriseName": "苏州科大讯飞教育科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892779000,
+                "updateUser": "moe5498",
+                "updateTime": 1504058944000,
+                "versionNo": 149
+            },
+            {
+                "enterpriseId": 235,
+                "enterpriseName": "公司139",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 148
+            },
+            {
+                "enterpriseId": 236,
+                "enterpriseName": "公司140",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 149
+            },
+            {
+                "enterpriseId": 237,
+                "enterpriseName": "公司141",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 150
+            },
+            {
+                "enterpriseId": 238,
+                "enterpriseName": "公司142",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 151
+            },
+            {
+                "enterpriseId": 239,
+                "enterpriseName": "广州市福思特科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe5673",
+                "updateTime": 1504057854000,
+                "versionNo": 153
+            },
+            {
+                "enterpriseId": 240,
+                "enterpriseName": "苏州高服企业管理服务有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe5680",
+                "updateTime": 1504057624000,
+                "versionNo": 154
+            },
+            {
+                "enterpriseId": 241,
+                "enterpriseName": "公司145",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 154
+            },
+            {
+                "enterpriseId": 242,
+                "enterpriseName": "公司146",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 155
+            },
+            {
+                "enterpriseId": 243,
+                "enterpriseName": "公司147",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 156
+            },
+            {
+                "enterpriseId": 244,
+                "enterpriseName": "公司148",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 157
+            },
+            {
+                "enterpriseId": 245,
+                "enterpriseName": "公司149",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 158
+            },
+            {
+                "enterpriseId": 246,
+                "enterpriseName": "北京学佳澳软件科技发展有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe5837",
+                "updateTime": 1504060625000,
+                "versionNo": 161
+            },
+            {
+                "enterpriseId": 247,
+                "enterpriseName": "公司151",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 160
+            },
+            {
+                "enterpriseId": 248,
+                "enterpriseName": "公司152",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 161
+            },
+            {
+                "enterpriseId": 249,
+                "enterpriseName": "公司153",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 162
+            },
+            {
+                "enterpriseId": 250,
+                "enterpriseName": "武汉合缘绿色生物股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6004",
+                "updateTime": 1504054880000,
+                "versionNo": 164
+            },
+            {
+                "enterpriseId": 251,
+                "enterpriseName": "公司155",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 164
+            },
+            {
+                "enterpriseId": 252,
+                "enterpriseName": "北京东方智业文化发展有限责任公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6373",
+                "updateTime": 1504062384000,
+                "versionNo": 169
+            },
+            {
+                "enterpriseId": 253,
+                "enterpriseName": "北京云知网联科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6459",
+                "updateTime": 1504058262000,
+                "versionNo": 167
+            },
+            {
+                "enterpriseId": 254,
+                "enterpriseName": "公司158",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 167
+            },
+            {
+                "enterpriseId": 255,
+                "enterpriseName": "公司159",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 168
+            },
+            {
+                "enterpriseId": 256,
+                "enterpriseName": "公司160",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 169
+            },
+            {
+                "enterpriseId": 257,
+                "enterpriseName": "公司161",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 170
+            },
+            {
+                "enterpriseId": 258,
+                "enterpriseName": "公司162",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 171
+            },
+            {
+                "enterpriseId": 259,
+                "enterpriseName": "公司163",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 172
+            },
+            {
+                "enterpriseId": 260,
+                "enterpriseName": "广州名动教育咨询有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6778",
+                "updateTime": 1504052639000,
+                "versionNo": 174
+            },
+            {
+                "enterpriseId": 261,
+                "enterpriseName": "公司165",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 174
+            },
+            {
+                "enterpriseId": 262,
+                "enterpriseName": "北京博导前程信息技术股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6811",
+                "updateTime": 1504056919000,
+                "versionNo": 177
+            },
+            {
+                "enterpriseId": 263,
+                "enterpriseName": "北京博创尚和科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "moe6897",
+                "updateTime": 1504055121000,
+                "versionNo": 178
+            },
+            {
+                "enterpriseId": 264,
+                "enterpriseName": "公司168",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 177
+            },
+            {
+                "enterpriseId": 265,
+                "enterpriseName": "公司169",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892780000,
+                "updateUser": "admin",
+                "updateTime": 1503892780000,
+                "versionNo": 178
+            },
+            {
+                "enterpriseId": 266,
+                "enterpriseName": "公司170",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 179
+            },
+            {
+                "enterpriseId": 267,
+                "enterpriseName": "八维宏烨（上海）信息科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "moe7001",
+                "updateTime": 1504061223000,
+                "versionNo": 181
+            },
+            {
+                "enterpriseId": 268,
+                "enterpriseName": "公司172",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 181
+            },
+            {
+                "enterpriseId": 269,
+                "enterpriseName": "公司173",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 182
+            },
+            {
+                "enterpriseId": 270,
+                "enterpriseName": "湖南潭州教育网络科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "moe7204",
+                "updateTime": 1504058118000,
+                "versionNo": 184
+            },
+            {
+                "enterpriseId": 271,
+                "enterpriseName": "公司175",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 184
+            },
+            {
+                "enterpriseId": 272,
+                "enterpriseName": "北京博创智联科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "moe7237",
+                "updateTime": 1504053063000,
+                "versionNo": 187
+            },
+            {
+                "enterpriseId": 273,
+                "enterpriseName": "北京润尼尔网络科技有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "moe7268",
+                "updateTime": 1504059741000,
+                "versionNo": 191
+            },
+            {
+                "enterpriseId": 274,
+                "enterpriseName": "北京正保育才教育科技股份有限公司",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "moe7283",
+                "updateTime": 1504061831000,
+                "versionNo": 191
+            },
+            {
+                "enterpriseId": 275,
+                "enterpriseName": "公司179",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 188
+            },
+            {
+                "enterpriseId": 276,
+                "enterpriseName": "公司180",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 189
+            },
+            {
+                "enterpriseId": 277,
+                "enterpriseName": "公司181",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 190
+            },
+            {
+                "enterpriseId": 278,
+                "enterpriseName": "公司182",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 191
+            },
+            {
+                "enterpriseId": 279,
+                "enterpriseName": "公司183",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 192
+            },
+            {
+                "enterpriseId": 280,
+                "enterpriseName": "公司184",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 193
+            },
+            {
+                "enterpriseId": 281,
+                "enterpriseName": "公司185",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 194
+            },
+            {
+                "enterpriseId": 282,
+                "enterpriseName": "公司186",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 195
+            },
+            {
+                "enterpriseId": 283,
+                "enterpriseName": "公司187",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 196
+            },
+            {
+                "enterpriseId": 284,
+                "enterpriseName": "公司188",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 197
+            },
+            {
+                "enterpriseId": 285,
+                "enterpriseName": "公司189",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 198
+            },
+            {
+                "enterpriseId": 286,
+                "enterpriseName": "公司190",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 199
+            },
+            {
+                "enterpriseId": 287,
+                "enterpriseName": "公司191",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 200
+            },
+            {
+                "enterpriseId": 288,
+                "enterpriseName": "公司192",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 201
+            },
+            {
+                "enterpriseId": 289,
+                "enterpriseName": "公司193",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 202
+            },
+            {
+                "enterpriseId": 290,
+                "enterpriseName": "公司194",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 203
+            },
+            {
+                "enterpriseId": 291,
+                "enterpriseName": "公司195",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 204
+            },
+            {
+                "enterpriseId": 292,
+                "enterpriseName": "公司196",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 205
+            },
+            {
+                "enterpriseId": 293,
+                "enterpriseName": "公司197",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 206
+            },
+            {
+                "enterpriseId": 294,
+                "enterpriseName": "公司198",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 207
+            },
+            {
+                "enterpriseId": 295,
+                "enterpriseName": "公司199",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 208
+            },
+            {
+                "enterpriseId": 296,
+                "enterpriseName": "公司200",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 209
+            },
+            {
+                "enterpriseId": 297,
+                "enterpriseName": "公司201",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 210
+            },
+            {
+                "enterpriseId": 298,
+                "enterpriseName": "公司202",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 211
+            },
+            {
+                "enterpriseId": 299,
+                "enterpriseName": "公司203",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892781000,
+                "updateUser": "admin",
+                "updateTime": 1503892781000,
+                "versionNo": 212
+            },
+            {
+                "enterpriseId": 300,
+                "enterpriseName": "公司204",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 213
+            },
+            {
+                "enterpriseId": 301,
+                "enterpriseName": "公司205",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 214
+            },
+            {
+                "enterpriseId": 302,
+                "enterpriseName": "公206",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 215
+            },
+            {
+                "enterpriseId": 303,
+                "enterpriseName": "公司207",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 216
+            },
+            {
+                "enterpriseId": 304,
+                "enterpriseName": "公司208",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 217
+            },
+            {
+                "enterpriseId": 305,
+                "enterpriseName": "公司209",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 218
+            },
+            {
+                "enterpriseId": 306,
+                "enterpriseName": "公司210",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 219
+            },
+            {
+                "enterpriseId": 307,
+                "enterpriseName": "公司211",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 220
+            },
+            {
+                "enterpriseId": 308,
+                "enterpriseName": "公司212",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 221
+            },
+            {
+                "enterpriseId": 309,
+                "enterpriseName": "公司213",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 222
+            },
+            {
+                "enterpriseId": 310,
+                "enterpriseName": "公司214",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 223
+            },
+            {
+                "enterpriseId": 311,
+                "enterpriseName": "公司215",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 224
+            },
+            {
+                "enterpriseId": 312,
+                "enterpriseName": "公司216",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 225
+            },
+            {
+                "enterpriseId": 313,
+                "enterpriseName": "公司217",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 226
+            },
+            {
+                "enterpriseId": 314,
+                "enterpriseName": "公司218",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 227
+            },
+            {
+                "enterpriseId": 315,
+                "enterpriseName": "公司219",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 228
+            },
+            {
+                "enterpriseId": 316,
+                "enterpriseName": "公司220",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 229
+            },
+            {
+                "enterpriseId": 317,
+                "enterpriseName": "公司221",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 230
+            },
+            {
+                "enterpriseId": 318,
+                "enterpriseName": "公司222",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 231
+            },
+            {
+                "enterpriseId": 319,
+                "enterpriseName": "公司223",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 232
+            },
+            {
+                "enterpriseId": 320,
+                "enterpriseName": "公司224",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 233
+            },
+            {
+                "enterpriseId": 321,
+                "enterpriseName": "公司225",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 234
+            },
+            {
+                "enterpriseId": 322,
+                "enterpriseName": "公司226",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 235
+            },
+            {
+                "enterpriseId": 323,
+                "enterpriseName": "公司227",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 236
+            },
+            {
+                "enterpriseId": 324,
+                "enterpriseName": "公司228",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 237
+            },
+            {
+                "enterpriseId": 325,
+                "enterpriseName": "公司229",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 238
+            },
+            {
+                "enterpriseId": 326,
+                "enterpriseName": "公司230",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 239
+            },
+            {
+                "enterpriseId": 327,
+                "enterpriseName": "公司231",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 240
+            },
+            {
+                "enterpriseId": 328,
+                "enterpriseName": "公司232",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 241
+            },
+            {
+                "enterpriseId": 329,
+                "enterpriseName": "公司233",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 242
+            },
+            {
+                "enterpriseId": 330,
+                "enterpriseName": "公司234",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892782000,
+                "updateUser": "admin",
+                "updateTime": 1503892782000,
+                "versionNo": 243
+            },
+            {
+                "enterpriseId": 331,
+                "enterpriseName": "公235",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 244
+            },
+            {
+                "enterpriseId": 332,
+                "enterpriseName": "公司236",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 245
+            },
+            {
+                "enterpriseId": 333,
+                "enterpriseName": "公司237",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 246
+            },
+            {
+                "enterpriseId": 334,
+                "enterpriseName": "公司238",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 247
+            },
+            {
+                "enterpriseId": 335,
+                "enterpriseName": "公司239",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 248
+            },
+            {
+                "enterpriseId": 336,
+                "enterpriseName": "公司240",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 249
+            },
+            {
+                "enterpriseId": 337,
+                "enterpriseName": "公司241",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 250
+            },
+            {
+                "enterpriseId": 338,
+                "enterpriseName": "公司242",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 251
+            },
+            {
+                "enterpriseId": 339,
+                "enterpriseName": "公司243",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 252
+            },
+            {
+                "enterpriseId": 340,
+                "enterpriseName": "公司244",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 253
+            },
+            {
+                "enterpriseId": 341,
+                "enterpriseName": "公司245",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 254
+            },
+            {
+                "enterpriseId": 342,
+                "enterpriseName": "公司246",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 255
+            },
+            {
+                "enterpriseId": 343,
+                "enterpriseName": "公司247",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 256
+            },
+            {
+                "enterpriseId": 344,
+                "enterpriseName": "公司248",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 257
+            },
+            {
+                "enterpriseId": 345,
+                "enterpriseName": "企业名称",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "moe9999",
+                "updateTime": 1504001590000,
+                "versionNo": 267
+            },
+            {
+                "enterpriseId": 346,
+                "enterpriseName": "公司250",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 259
+            },
+            {
+                "enterpriseId": 347,
+                "enterpriseName": "公司251",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 260
+            },
+            {
+                "enterpriseId": 348,
+                "enterpriseName": "公司252",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 261
+            },
+            {
+                "enterpriseId": 349,
+                "enterpriseName": "公司253",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 262
+            },
+            {
+                "enterpriseId": 350,
+                "enterpriseName": "公司254",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 263
+            },
+            {
+                "enterpriseId": 351,
+                "enterpriseName": "公司255",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 264
+            },
+            {
+                "enterpriseId": 352,
+                "enterpriseName": "公司256",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 265
+            },
+            {
+                "enterpriseId": 353,
+                "enterpriseName": "公司257",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892783000,
+                "updateUser": "admin",
+                "updateTime": 1503892783000,
+                "versionNo": 266
+            },
+            {
+                "enterpriseId": 354,
+                "enterpriseName": "公司258",
+                "remarks": null,
+                "createUser": "admin",
+                "createTime": 1503892786000,
+                "updateUser": "admin",
+                "updateTime": 1503892786000,
+                "versionNo": 267
+            }
+        ];
+        var projectTypes = {
+            "003": "教学内容和课程体系改革",
+            "001": "大学生创新创业联合基金",
+            "004": "师资培训",
+            "006": "实践条件建设",
+            "005": "校外实践基地建设",
+            "002": "创新创业教育改革",
+            "007": "大学生实习实训项目",
+            "008": "新工科建设专题"
+        };
+        var projectTypeList = [];
+        for(var p in projectTypes){
+            projectTypeList.push({
+                value: p,
+                text: projectTypes[p]
+            });
+        }
+        var projectYearList = [];
+        for (var i = 2015, max = new Date().getFullYear() + 3; i < max; i++) {
+            projectYearList.push({
+                text: i + '年第一批',
+                value: i + '年第一批'
+            });
+            projectYearList.push({
+                text: i + '年第二批',
+                value: i + '年第二批'
+            });
+        }
+        initFilterBox('#filter', [{
+                key: 'enterprise',
+                label: '企业',
+                data: enterpriseList,
+                textField: 'enterpriseName',
+                valueField: 'enterpriseId',
+                selected: null,
+                type: 1
+            },
+            {
+                key: 'projectType',
+                label: '项目类型',
+                data: projectTypeList,
+                selected: null,
+                type: 1
+            },
+            {
+                key: 'projectYear',
+                label: '年份',
+                data: projectYearList,
+                selected: null,
+                type: 2
+            }
+        ], function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
+
+</html>
